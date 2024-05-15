@@ -1,0 +1,41 @@
+@keyframes buttonAnimation {
+    0% {
+        background-color: white;
+        color: rgb(69, 133, 163);
+        box-shadow: 0 0 0 3px rgb(69, 133, 163);
+        border: 3px solid rgb(69, 133, 163);
+    }
+
+    25% {
+        background-color: white;
+        color: rgb(69, 133, 163);
+        border: 6px dashed white;
+        box-shadow: 0;
+
+    }
+
+    50% {
+        background-color: white;
+        color: rgb(69, 133, 163);
+        border: 3px solid rgb(69, 133, 163);
+        box-shadow: 0;
+
+    }
+
+    75% {
+        background-color: white;
+        color: rgb(69, 133, 163);
+        border: 6px dashed white;
+        box-shadow: 0;
+
+    }
+
+    100% {
+        background-color: white;
+        color: rgb(69, 133, 163);
+        border: 3px solid rgb(69, 133, 163);
+        box-shadow: 0;
+
+    }
+
+}

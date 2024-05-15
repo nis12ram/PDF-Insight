@@ -1,0 +1,168 @@
+/* @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+.borderRad {
+    border-radius: 15px;
+}
+
+.smallBorderRad {
+    border-radius: 9px;
+}
+
+.mainBgColor {
+    background-color: rgb(69, 133, 163);
+
+}
+
+.mainTxtColor {
+    color: rgb(69, 133, 163);
+
+}
+
+.secondaryBgColor {
+    background-color: white;
+
+}
+
+.secondaryTxtColor {
+    color: white;
+
+}
+
+.transparentBgColor {
+    background-color: transparent;
+}
+
+
+.marginAuto {
+    margin: auto;
+}
+
+.displayFlex {
+    display: flex;
+}
+
+.flexWrap {
+    flex-wrap: wrap;
+}
+
+.flexDirectionCol {
+    flex-direction: column;
+}
+
+.justifyCenter {
+    justify-content: center;
+}
+
+
+.justifySpaceBtw {
+    justify-content: space-between;
+}
+
+.alignItmCenter {
+    align-items: center;
+}
+
+.displayNone {
+    display: none;
+}
+
+.fullPad {
+    padding: 10px;
+}
+
+.smallTextFont {
+    font-size: 14px;
+}
+
+.textFont {
+    font-size: 20px;
+}
+
+
+.bigTextFont {
+    font-size: 25px;
+
+}
+
+.ultraTextFont {
+    font-size: 30px;
+}
+
+.boldFont {
+    font-weight: bold;
+}
+
+.normalFont {
+    font-weight: normal;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.iconSize {
+    width: 25px;
+}
+
+.smallIconSize {
+    width: 18px;
+}
+
+.topMargin {
+    margin-top: 1vh;
+}
+
+.topPad {
+    padding-top: 2px;
+}
+
+.bottomPad {
+    padding-bottom: 2px;
+}
+
+.rightPad {
+    padding-right: 4px;
+}
+
+.leftPad {
+    padding-left: 4px;
+}
+
+.bottomMargin {
+    margin-bottom: 8px;
+}
+
+.pad {
+    padding: 5px;
+}
+
+
+
+.pointerCursor {
+    cursor: pointer;
+}
+
+
+.verticalLine {
+    width: 100%;
+    border: 1px solid white;
+}
+
+.smallVerticalLine {
+    width: 100%;
+    border: 0.3px solid white;
+}
+
+
+
+
+.removeBorder {
+    border: 0;
+}
+
+.disableScreen {
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    z-index: 9;
+}

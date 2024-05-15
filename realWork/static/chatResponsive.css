@@ -1,0 +1,46 @@
+@media screen and (max-width:300px) {
+    .templateDisplay>p {
+        width: 95%;
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    /* .mainDisplay {
+        height: 90vh !important;
+    } */
+
+
+    .input {
+
+        bottom: 65px;
+        z-index: 10;
+    }
+
+    .templateDisplay {
+
+        row-gap: 5vh;
+        /* background-color: white; */
+        /* border-radius: 50px; */
+    }
+
+}
+
+@media screen and (max-width:640px) {
+    body {
+        overflow: auto;
+    }
+
+}
+
+
+@media screen and (max-width:800px) {
+
+    .templateDisplay {
+
+        row-gap: 10vh;
+        /* background-color: white; */
+        /* border-radius: 50px; */
+    }
+
+}
