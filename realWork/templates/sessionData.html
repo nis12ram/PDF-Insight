@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Insight</title>
+    <link rel="icon" href="static/starter2nobg.png"
+    type="image/x-icon" />
+    <link rel="stylesheet" href="/static/utility.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            /* background-color: rgba(147, 252, 255, 0.3); */
+
+        }
+
+        .base {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            justify-content: center;
+            align-items: center;
+            /* opacity: 0.5; */
+
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .uploadStuff {
+            /* max-width: 45vh; */
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            /* Dark inset shadow */
+
+
+        }
+
+        #button {
+            background-color: transparent;
+            border: 0px;
+            box-shadow: 0;
+
+            /* animation-fill-mode: both; */
+            /* animation-direction: alternate-reverse; */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+
+        #info {
+            position: absolute;
+            bottom: 100px;
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            background-color: white;
+
+
+
+        }
+
+        input[type="text"]::placeholder {
+            color: rgb(69, 133, 163);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="base">
+       
+
+        <div id="inputBox" class="uploadStuff bigBorderRad  mainBgColor">
+            <input type="text" placeholder="Session Name" name="sessionName" id="sessionName"
+                class=" fontSize padX padY abelRegular  borderRad mainTxtColor zeroBorder marginY">
+            <input type="text" placeholder="Session Description" name="sessionDesc" id="sessionDesc"
+                class="fontSize  padX padY abelRegular  borderRad mainTxtColor zeroBorder marginY">
+        </div>
+
+
+
+
+
+        <button id='button' class=" fontSize padX padY cursor abelHeavy  borderRad mainTxtColor">Continue</button>
+
+        <p id="info" class="smallFontSize abelHeavy mainTxtColor"></p>
+    </div>
+    <script>
+        // preventing user from going to previous window 
+        window.history.forward();
+
+        const sessionName = document.getElementById("sessionName")
+        const sessionDesc = document.getElementById("sessionDesc")
+        const button = document.getElementById("button")
+        const info = document.getElementById('info')
+
+        async function getResponse(formData) {
+            let response = await fetch('/sessionData', {
+                method: 'POST',
+                body: formData
+            });
+            // console.log('response comes')
+            // console.log(response)
+            let data = await response.json();
+            return data
+        }
+
+
+        function hideInfo(delay) {
+            setTimeout(() => {
+                info.textContent = ""
+
+            }, delay);
+        }
+
+
+        button.addEventListener('click', async function () {
+
+            if ((String(sessionName.value).length == 0) || (String(sessionDesc.value).length == 0)) {
+                info.innerHTML = "Empty Entry  <img src='/static/fail.png' alt='fail' class='smallIconSize'>"
+            } else {
+                const formData = new FormData()
+                formData.append('sessionName', sessionName.value)
+                formData.append('sessionDesc', sessionDesc.value)
+                const data = await getResponse(formData)
+                console.log(data)
+                if (data.sucess == 1) {
+                    window.location.href = '/reDirect/chatUi';
+                    hideInfo(1500)
+
+                }
+
+            }
+
+        })
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

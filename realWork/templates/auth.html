@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Insight</title>
+    <link rel="icon" href="static/starter2nobg.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/utility.css">
+    <link rel="stylesheet" href="/static/chatAnimLoader.css">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            /* background-color: rgba(147, 252, 255, 0.3); */
+
+        }
+
+        #verify {
+            min-width: 20vh;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            padding: 20px;
+        }
+
+        .base {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            row-gap: 10px;
+            justify-content: center;
+            align-items: center;
+            /* opacity: 0.5; */
+
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .uploadStuff {
+            /* max-width: 45vh; */
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            /* Dark inset shadow */
+
+
+        }
+
+        .button {
+            background-color: transparent;
+            border: 0px;
+            box-shadow: 0;
+
+            /* animation-fill-mode: both; */
+            /* animation-direction: alternate-reverse; */
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+        }
+
+        #info {
+            position: absolute;
+            bottom: 100px;
+        }
+
+        input[type="text"] {
+            border: none;
+            outline: none;
+            background-color: white;
+
+
+
+        }
+
+        input[type="text"]::placeholder {
+            color: rgb(69, 133, 163);
+
+        }
+
+        .lds-ellipsis {
+            display: block !important;
+        }
+
+        .lds-ellipsis div {
+            background-color: rgb(69, 133, 163) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="base">
+
+        <div id="verify" class=" bigBorderRad  mainBgColor">
+            <p id="existingUser" class="tmpTxtColor abelHeavy fontSize cursor underLine ">Existing User</p>
+            <p id="newUser" class="tmpTxtColor abelHeavy fontSize cursor underLine ">New User</p>
+        </div>
+
+        <div id="existingU" class="uploadStuff bigBorderRad mainBgColor displayNone">
+            <input type="text" placeholder="Enter UserId" name="euserId" id="euserId"
+                class=" fontSize padX padY abelRegular  borderRad mainTxtColor zeroBorder marginY">
+
+            <button id='signIn' class=" button fontSize  cursor abelHeavy  borderRad tmpTxtColor ">Sign in</button>
+        </div>
+
+        <div id="newU" class="uploadStuff bigBorderRad mainBgColor displayNone ">
+            <input type="text" placeholder="Set UserId" name="nuserId" id="nuserId"
+                class=" fontSize padX padY abelRegular  borderRad mainTxtColor zeroBorder marginY">
+
+            <input type="text" placeholder="set userName" name="userName" id="userName"
+                class=" fontSize padX padY abelRegular  borderRad mainTxtColor zeroBorder marginY">
+
+            <button id='signUp' class="button  fontSize  cursor abelHeavy  borderRad tmpTxtColor ">Sign up</button>
+        </div>
+
+        <p id="info" class="smallFontSize abelHeavy mainTxtColor"></p>
+    </div>
+
+    <script>
+        // preventing user from going to previous window 
+        window.history.forward();
+        const verify = document.getElementById("verify")
+        const euserId = document.getElementById('euserId')
+        const nuserId = document.getElementById("nuserId")
+        const userName = document.getElementById('userName')
+        const existingU = document.getElementById("existingU")
+        const newU = document.getElementById("newU")
+        const signIn = document.getElementById("signIn")
+        const signUp = document.getElementById("signUp")
+        const info = document.getElementById("info")
+
+        function hideInfo(delay) {
+            setTimeout(() => {
+                info.textContent = ""
+
+            }, delay);
+        }
+
+        verify.children[0].addEventListener('click', function () {
+            verify.classList.toggle("displayNone")
+            existingU.classList.toggle("displayNone")
+        })
+
+        verify.children[1].addEventListener('click', function () {
+            verify.classList.toggle("displayNone")
+            newU.classList.toggle("displayNone")
+        })
+
+        signUp.addEventListener('click', async function () {
+
+            if ((String(userName.value).length == 0) || (String(nuserId.value).length == 0)) {
+                info.innerHTML = "Empty Entry <img src='/static/fail.png' alt='fail' class='smallIconSize'>";
+                hideInfo(delay = 1000);
+                verify.classList.toggle("displayNone")
+                newU.classList.toggle("displayNone")
+            }
+            else {
+                userName.disabled = true
+                nuserId.disabled = true
+                const formData = new FormData();
+                formData.append('userName', userName.value)
+                formData.append('nuserId', nuserId.value)
+
+
+                const response = await fetch('/signUp', {
+                    method: 'POST',
+                    body: formData
+                });
+                // console.log('response comes')
+                // console.log(response)
+                const data = await response.json();
+
+                if (data.sucess == 1) {
+
+                    info.innerHTML = "sucesfully created    <img src='/static/sucess.svg' alt='sucess' class='smallIconSize'>";
+                    hideInfo(delay = 1000);
+                    window.location.href = '/reDirect/chatUi';
+                    userName.disabled = false
+                    nuserId.disabled = false
+                }
+                else {
+                    userName.disabled = false
+                    nuserId.disabled = false
+                    info.innerHTML = "error occured   <img src='/static/fail.png' alt='fail' class='smallIconSize'>";
+                    hideInfo(delay = 1000);
+                    verify.classList.toggle("displayNone")
+                    newU.classList.toggle("displayNone")
+                }
+
+
+
+            }
+
+
+        })
+
+        signIn.addEventListener('click', async function () {
+            if (String(euserId.value).length == 0) {
+                info.innerHTML = "Empty Entry <img src='/static/fail.png' alt='fail' class='smallIconSize'>";
+                hideInfo(delay = 1000);
+                verify.classList.toggle("displayNone")
+                existingU.classList.toggle("displayNone")
+            } else {
+                euserId.disabled = true
+                const formData = new FormData();
+                formData.append('euserId', euserId.value)
+
+                const response = await fetch('/signIn', {
+                    method: 'POST',
+                    body: formData
+                });
+                // console.log('response comes')
+                // console.log(response)
+                const data = await response.json();
+
+
+                // showing the loader 
+                info.innerHTML = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>'
+
+                if (data.sucess == 1) {
+                    // async loading of vectorStore 
+                    await fetch('/loadVStore', { method: 'POST' })
+                    hideInfo(delay = 0);
+                    euserId.disabled = false
+                    window.location.href = '/reDirect/chatUi';
+                }
+                else {
+                    euserId.disabled = false
+                    info.innerHTML = `${data.message}   <img src='/static/fail.png' alt='fail' class='smallIconSize'>`;
+                    hideInfo(delay = 1000);
+                    verify.classList.toggle("displayNone")
+                    existingU.classList.toggle("displayNone")
+                }
+
+
+            }
+
+
+        })
+
+    </script>
+
+
+
+</body>
+
+</html>

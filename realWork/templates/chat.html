@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Insight</title>
+    <link rel="icon" href="static/starter2nobg.png"
+    type="image/x-icon" />
+    <style>
+
+    </style>
+
+    <link rel="stylesheet" href="/static/chat.css">
+    <link rel="stylesheet" href="/static/chatUtility.css">
+    <link rel="stylesheet" href="/static/chatAnimLoader.css">
+    <link rel="stylesheet" href="/static/chatResponsive.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="display" class="topPad">
+            <div class="navBar displayFlex justifySpaceBtw ">
+                <img id="mennu" src="/static/menu.svg" alt="" class="invert iconSize pointerCursor">
+                <!-- <p class="bigTextFont boldFont secondaryTxtColor">LLM</p> -->
+                <!-- <img src="static/starter2nobg.png" alt="starter" class="iconSize"> -->
+                <img id="newChat" src="/static/new.svg" alt="" class="invert iconSize pointerCursor">
+            </div>
+
+            <div class="mainDisplay fullPad ">
+                <div class="templateDisplay  ">
+                    <p class="ultraTextFont secondaryTxtColor">PDF Insight: Your Personal Document Interpreter</p>
+                    <div id="sampleQueries" class="displayFlex flexWrap justifySpaceBtw">
+                        <p id="sampleQ1" class="textFont secondaryTxtColor fullPad pointerCursor ">Write a summary of
+                            the context.</p>
+                        <p id="sampleQ1" class="textFont secondaryTxtColor fullPad pointerCursor ">Write the keypoints
+                            of
+                            the context.</p>
+
+                    </div>
+                </div>
+
+                <div class="qcBaseDisplay"></div>
+
+            </div>
+        </div>
+        <div id="input">
+            <div class="displayFlex  borderRad secondaryBgColor marginAuto rightPad alignItmCenter ">
+                <textarea name="queryBox" id="queryBox" class="fullPad  textFont mainTxtColor "
+                    placeholder="Ask Insight's" spellcheck="false"></textarea>
+                <img id="submitBtn" src="/static/send.svg" alt="" class=" iconSize pointerCursor">
+            </div>
+        </div>
+
+        <div id="mennuContent" class="displayNone mennuBorder secondaryBgColor topPad ">
+            <div id="mennuStarter" class='displayFlex justifySpaceBtw alignItmCenter'>
+                <p class="mainTxtColor bigTextFont boldFont ">Session Details</p>
+                <button id="mennuContentClose"
+                    class="secondaryTxtColor mainBgColor textFont smallBorderRad pad removeBorder ">Close</button>
+            </div>
+
+            <div class="session current displayFlex flexDirectionCol">
+                <p class="mainTxtColor textFont boldFont ">Current</p>
+                <div class="sessionScroll displayFlex flexDirectionCol">
+                    <!-- <div>
+                        <div class="displayFlex justifySpaceBtw alignItmCenter">
+                            <p class="secondaryTxtColor textFont normalFont pointerCursor">${sessionName}</p>
+                            <img src="/static/expand.svg" alt="expand" class="invert smallIconSize pointerCursor">
+                        </div>
+                        <p class="displayNone secondaryTxtColor textFont normalFont">${sessionDesc}</p>
+                    </div> -->
+                </div>
+
+            </div>
+            <div class="session today displayFlex flexDirectionCol">
+                <p class="mainTxtColor textFont boldFont ">Today</p>
+                <div class="sessionScroll displayFlex flexDirectionCol">
+
+                </div>
+            </div>
+            <div class="session lastWeek displayFlex flexDirectionCol">
+                <p class="mainTxtColor textFont boldFont ">Last Week</p>
+                <div class="sessionScroll displayFlex flexDirectionCol">
+
+                </div>
+            </div>
+            <div class="session others displayFlex flexDirectionCol">
+                <p class="mainTxtColor textFont boldFont ">Remaning</p>
+                <div class="sessionScroll displayFlex flexDirectionCol">
+
+                </div>
+            </div>
+
+            <div class="mennuFooter displayFlex flexDirectionCol ">
+                <div id="addExist" class="mennuBox mainBgColor pointerCursor pad displayFlex alignItmCenter   ">
+                    <img src="/static/add.svg" alt="add" class="iconSize ">
+                    <p class="secondaryTxtColor TextFont boldFont">Add Documents in
+                        Current Session</p>
+                </div>
+                <div id="newSess" class="mennuBox mainBgColor pointerCursor pad displayFlex alignItmCenter ">
+                    <img src="/static/new.svg" alt="new" class="invert iconSize ">
+                    <p class="secondaryTxtColor TextFont boldFont">Create New Session </p>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    </div>
+
+    <script src="/static/chatClient.js"></script>
+
+</body>
+
+</html>
