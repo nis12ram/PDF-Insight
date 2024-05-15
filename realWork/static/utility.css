@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+
+
+.mainTxtColor {
+    color: rgb(69, 133, 163);
+}
+
+.mainBgColor {
+    background-color: rgb(69, 133, 163);
+}
+
+.tmpBgColor {
+    background-color: white;
+}
+
+.tmpTxtColor {
+    color: white;
+}
+
+.borderRad {
+    border-radius: 20px;
+}
+
+.bigBorderRad {
+    border-radius: 30px;
+}
+
+.zeroBorder {
+    border: 0;
+}
+
+.fontSize {
+    font-size: 30px;
+}
+
+.smallFontSize {
+    font-size: 20px;
+}
+
+.padX {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.padY {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.marginY {
+    margin: 0 10px;
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.abelRegular {
+    font-family: "Abel", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.abelHeavy {
+    font-family: "Abel", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.underLine {
+    text-decoration: underline;
+}
+
+.invert {
+    filter: invert(1);
+}
+
+.iconSize {
+    width: 100px;
+    height: auto;
+}
+
+.smallIconSize {
+    width: 20px;
+    height: auto;
+}
+
+.displayNone {
+    display: none !important;
+}
