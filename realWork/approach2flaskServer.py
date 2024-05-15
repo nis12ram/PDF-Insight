@@ -337,10 +337,12 @@ def userChatData():
 
 
 if __name__ == "__main__":
-    # app.run(host='localhost', port=5001, debug=False)
-    from waitress import serve
-    port = '3001'
-    host = '192.168.43.30'
+    # run as flask devlopment server
+    app.run(host='localhost', port=5001, debug=False)
+
+    # run as a flask production server
+    # from waitress import serve
+    # port = '5001'
     # host = 'localhost'
-    print(f'Server running at http://{host}:{port}')
-    serve(app, port=port, host=host)
+    # print(f'Server running at http://{host}:{port}')
+    # serve(app, port=port, host=host)
