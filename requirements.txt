@@ -1,0 +1,13 @@
+langchain == 0.1.16
+pypdf
+PyPDF2
+python-dotenv
+sentence-transformers
+langchain_groq
+Flask
+Flask-Caching
+pymongo
+gunicorn
+waitress
+cassio
+Flask-PyMongo
