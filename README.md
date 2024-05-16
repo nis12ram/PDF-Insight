@@ -70,7 +70,7 @@ Create python virual environment
   python -m venv <path>/venv
 ```
 
-Install requirements $ Add .env file
+Install requirements & Add .env file
 
 ```bash
   pip install -r requirements.txt
