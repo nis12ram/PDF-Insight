@@ -9,7 +9,6 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.vectorstores.cassandra import Cassandra
 import cassio
 from langchain_groq import ChatGroq
-from langchain_community.llms import Ollama
 from langchain.memory import ConversationBufferMemory, ConversationEntityMemory
 from langchain_core.prompts import PromptTemplate, SystemMessagePromptTemplate, ChatPromptTemplate
 from pypdf import PdfReader
@@ -84,17 +83,7 @@ def getTextChunks(pdfFiles, getId=True, alreadyHaveId=None):
     return docsChunks, sessionId
 
 
-def getVectorStore(docsChunks):
-    embeddingFunction = SentenceTransformerEmbeddings(
-        model_name="all-MiniLM-L6-v2")
 
-    # vectorStore = Lancedb.from_documents(docsChunks, embeddingFunction)
-    # vectorStore.save_local("vectorDb")
-    vectorStore = FAISS.from_documents(docsChunks, embeddingFunction)
-
-    vectorStore.save_local("vectorDb")
-
-    return vectorStore
 
 
 def getAstraVectorStore(docsChunks, collectionName, add=True):
@@ -112,25 +101,6 @@ def getAstraVectorStore(docsChunks, collectionName, add=True):
 
 
 
-def uploadToVectorStore(docsChunks):
-    embeddingFunction = SentenceTransformerEmbeddings(
-        model_name="all-MiniLM-L6-v2")
-
-    # vectorStore = Lancedb.from_documents(docsChunks, embeddingFunction)
-    # vectorStore.save_local("vectorDb")
-    vectorStore = FAISS.from_documents(docsChunks, embeddingFunction)
-
-    vectorStore.save_local("vectorDb")
-    print('Feature vector stored in Faiss vectordb')
-
-
-def loadVectorStore(dbPath):
-    embeddingFunction = SentenceTransformerEmbeddings(
-        model_name="all-MiniLM-L6-v2")
-
-    vectorStore = FAISS.load_local(
-        dbPath, embeddingFunction, allow_dangerous_deserialization=True)
-    return vectorStore
 
 
 # base on create_retrieval_chain
@@ -164,7 +134,6 @@ def getAstraConversationChain(vectorStore, userSessionId):
     groqApiKey = os.environ['GROQ_API_KEY']
     # llm = ChatGroq(groq_api_key=groq_api_key, model_name="gemma-7b-it")
     llm = ChatGroq(groq_api_key=groqApiKey, model_name="llama3-8b-8192")
-    # llm = Ollama(model="gemma:2b")
 
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)

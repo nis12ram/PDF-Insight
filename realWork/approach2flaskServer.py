@@ -337,10 +337,10 @@ def userChatData():
 
 
 if __name__ == "__main__":
-    # run as a flask devlopment server
+    ## run as a flask devlopment server
     app.run(host='localhost', port=5001, debug=False)
 
-    # run as a flask production server
+    ## run as a flask production server
     # from waitress import serve
     # port = '5001'
     # host = 'localhost'
